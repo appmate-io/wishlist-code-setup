@@ -1,0 +1,714 @@
+/* Button */
+
+wk-button {
+  pointer-events: none;
+}
+
+.wk-button .wk-icon {
+  --size: var(--icon-size, 18px);
+  --fill: var(--icon-fill);
+  --stroke: var(--icon-stroke, black);
+  --stroke-width: var(--icon-stroke-width, 1px);
+}
+
+.wk-button {
+  position: relative;
+  appearance: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 auto;
+  text-decoration: none;
+  color: unset;
+  border-width: 1px;
+  border-color: currentColor;
+  border-style: none;
+  gap: 7px;
+}
+
+.wk-button:not(:disabled) {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.wk-button:focus {
+  outline: none;
+}
+
+.wk-button.wk-full-width {
+  width: 100%;
+}
+
+.wk-button.wk-align-left {
+  margin-left: 0;
+}
+
+.wk-button.wk-align-content-left {
+  justify-content: left;
+}
+
+.wk-button.wk-align-right {
+  margin-right: 0;
+}
+
+.wk-button.wk-align-content-right {
+  justify-content: right;
+}
+
+/* Counter */
+
+.wk-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.wk-counter.wk-dot,
+.wk-counter.wk-bubble {
+  padding: 0;
+  height: var(--size);
+  min-width: var(--size);
+  border-radius: calc(var(--size) / 2);
+}
+
+.wk-counter.wk-brackets::before {
+  content: "(";
+}
+
+.wk-counter.wk-brackets::after {
+  content: ")";
+}
+
+/* Icon */
+
+.wk-icon {
+  --size: 18px;
+  --fill: currentColor;
+  --stroke: currentColor;
+  --stroke-width: 1.25px;
+
+  position: relative;
+}
+
+.wk-icon svg {
+  display: block;
+  position: static !important;
+  width: var(--size) !important;
+  height: var(--size) !important;
+  overflow: visible !important;
+  pointer-events: none;
+  transition: none;
+}
+
+.wk-icon svg path {
+  fill: var(--fill, transparent);
+  stroke: var(--stroke, transparent);
+  stroke-width: var(--stroke-width);
+  transition: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.wk-icon .wk-spinner-svg {
+  animation: wk-rotate 1.4s linear infinite;
+}
+
+.wk-icon .wk-spinner-circle {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  stroke: currentColor;
+  animation: wk-dash 1.4s ease-in-out infinite;
+}
+
+@keyframes wk-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes wk-dash {
+  0% {
+    stroke-dashoffset: 280;
+  }
+  50% {
+    stroke-dashoffset: 75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 280;
+    transform: rotate(450deg);
+  }
+}
+
+/* Wishlist Page */
+
+wishlist-page {
+  --page-max-width: 1200px;
+  --page-padding-top: 30px;
+  --page-padding-bottom: 80px;
+  --button-min-height: 45px;
+  --button-border-radius: 0;
+  --input-min-height: 45px;
+  --input-border-radius: 1px;
+
+  --grid-columns-xs: 1;
+  --grid-columns-sm: 2;
+  --grid-columns-md: 2;
+  --grid-columns-lg: 3;
+  --grid-columns-xl: 4;
+
+  --cta-button-background: black;
+  --cta-button-border: solid 1px black;
+  --cta-button-color: white;
+
+  --variant-input-background: white;
+  --variant-input-border: solid 1px black;
+  --variant-input-color: black;
+  --variant-input-selected-background: white;
+  --variant-input-selected-border: solid 1px black;
+  --variant-input-selected-color: black;
+  --variant-input-selected-shadow: 0 0 0 1px black;
+
+  --price-justify-content: center;
+
+  --option-select-label-display: none;
+
+  --image-aspect-ratio: 1/1;
+  --image-object-fit: contain;
+  --meta-text-align: center;
+}
+
+wishlist-page .wk-page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: var(--page-max-width);
+  padding: var(--page-padding-top) 1em var(--page-padding-bottom);
+}
+
+wishlist-page .wk-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+wishlist-page .wk-header .wk-title {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-size: calc(var(--wk-font-text-scale) * 300%);
+}
+
+wishlist-page .wk-header .wk-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-size: calc(var(--wk-font-text-scale) * 80%);
+}
+
+@media (max-width: 500px) {
+  wishlist-page .wk-header .wk-controls {
+    flex-direction: column;
+  }
+}
+
+wishlist-page .wk-login-callout,
+wishlist-page .wk-wishlist-empty-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0;
+  font-size: calc(var(--wk-font-text-scale) * 100%);
+}
+
+wishlist-page .wk-login-callout p,
+wishlist-page .wk-wishlist-empty-callout p {
+  padding: 0;
+  margin: 0;
+}
+
+wishlist-page .wk-login-callout p a,
+wishlist-page .wk-wishlist-empty-callout p a {
+  text-decoration: underline;
+  border: none !important;
+  background: none !important;
+}
+
+wishlist-page .wk-callout-cta,
+wishlist-page .wk-callout-cta:visited,
+wishlist-page .wk-callout-cta:active,
+wishlist-page .wk-callout-cta:focus {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 1em;
+  text-decoration: none;
+  color: var(--cta-button-color);
+  background: var(--cta-button-background);
+  border: var(--cta-button-border);
+  border-radius: var(--button-border-radius);
+  min-height: var(--button-min-height);
+  font-size: calc(var(--wk-font-text-scale) * 100%);
+  font-family: inherit;
+}
+
+wishlist-page .wk-login-callout p a,
+wishlist-page .wk-wishlist-empty-callout p a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+wishlist-page .wk-grid {
+  --columns: var(--grid-columns-xs);
+  display: grid;
+  grid-gap: 2em 1em;
+  grid-template-columns: repeat(var(--columns), 1fr);
+}
+
+@media (min-width: 380px) {
+  wishlist-page .wk-grid {
+    --columns: var(--grid-columns-sm);
+  }
+}
+
+@media (min-width: 502px) {
+  wishlist-page .wk-grid {
+    --columns: var(--grid-columns-md);
+  }
+}
+
+@media (min-width: 710px) {
+  wishlist-page .wk-grid {
+    --columns: var(--grid-columns-lg);
+  }
+}
+
+@media (min-width: 1008px) {
+  wishlist-page .wk-grid {
+    --columns: var(--grid-columns-xl);
+  }
+}
+
+wishlist-product-card {
+  min-width: 0;
+}
+
+wishlist-product-card .wk-product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+wishlist-product-card .wk-image-link,
+wishlist-product-card .wk-image-link:visited,
+wishlist-product-card .wk-image-link:active,
+wishlist-product-card .wk-image-link:focus {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-bottom: 0.5em;
+  opacity: 1;
+}
+
+wishlist-product-card .wk-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: var(--image-aspect-ratio);
+  object-fit: var(--image-object-fit);
+  opacity: 1;
+}
+
+wishlist-product-card .wk-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: var(--meta-text-align);
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+wishlist-product-card .wk-vendor {
+  color: var(--text-color);
+  font-size: calc(var(--wk-font-text-scale) * 80%);
+  line-height: 1;
+}
+
+wishlist-product-card .wk-product-title .wk-text-link {
+  display: block;
+  text-decoration: none;
+  line-height: 1.2;
+  padding: 0;
+  margin: 0;
+}
+
+wishlist-product-card .wk-product-title .wk-text-link,
+wishlist-product-card .wk-product-title .wk-text-link:visited,
+wishlist-product-card .wk-product-title .wk-text-link:active,
+wishlist-product-card .wk-product-title .wk-text-link:focus {
+  color: var(--text-color);
+  font-size: calc(var(--wk-font-text-scale) * 100%);
+}
+
+wishlist-product-card .wk-price {
+  display: flex;
+  gap: 0.5em;
+  color: var(--text-color);
+  font-size: calc(var(--wk-font-text-scale) * 87.5%);
+  justify-content: var(--price-justify-content);
+  line-height: 1.2;
+}
+
+wishlist-product-card .wk-current-price {
+  display: inline-block;
+}
+
+wishlist-product-card .wk-current-price.wk-sale {
+  color: var(--text-color);
+}
+
+wishlist-product-card .wk-compare-price {
+  display: inline-block;
+  text-decoration: line-through;
+}
+
+wishlist-product-card .wk-unit-price {
+  font-size: calc(var(--wk-font-text-scale) * 70%);
+}
+
+wishlist-product-card .wk-unit-price-money::before {
+  content: "(";
+}
+
+wishlist-product-card .wk-unit-price-unit::after {
+  content: ")";
+}
+
+wishlist-product-card .wk-form {
+  margin-top: auto;
+}
+
+wishlist-product-card .wk-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+wk-option-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+wk-option-select .wk-option-select {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+wk-option-select.wk-single-option {
+  display: none;
+}
+
+wk-option-select .wk-label {
+  display: var(--option-select-label-display);
+  width: 100%;
+  line-height: 1;
+  font-size: calc(var(--wk-font-text-scale) * 80%);
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+wk-option-select .wk-input {
+  appearance: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+wk-option-select .wk-control {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 0.25em 0.5em;
+  border-radius: var(--input-border-radius);
+  min-height: var(--input-min-height);
+  color: var(--variant-input-color);
+  background: var(--variant-input-background);
+  border: var(--variant-input-border);
+}
+
+wk-option-select .wk-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+wk-option-select .wk-content .wk-text {
+  flex: 1;
+  line-height: 1;
+  text-align: left;
+  font-size: calc(var(--wk-font-text-scale) * 87.5%);
+  font-family: inherit;
+}
+
+wk-option-select .wk-icon {
+  --stroke: var(--variant-input-color);
+  --size: 16px;
+  --stroke-width: 1px;
+  --fill: transparent;
+}
+
+wk-option-swatches.wk-single-option {
+  display: none;
+}
+
+wk-option-swatches .wk-fieldset {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  border: none;
+  padding: 0;
+  gap: 8px;
+}
+
+wk-option-swatches .wk-option-swatches > .wk-label {
+  display: var(--option-select-label-display);
+  margin: 0;
+  padding: 0;
+  font-size: calc(var(--wk-font-text-scale) * 80%);
+  font-family: inherit;
+}
+
+wk-option-swatches .wk-swatch {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: var(--input-min-height);
+  min-width: var(--input-min-height);
+}
+
+wk-option-swatches .wk-swatch .wk-label {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  padding: 0.25em;
+  margin: 0;
+  color: var(--variant-input-color);
+  font-size: calc(var(--wk-font-text-scale) * 80%);
+  font-family: inherit;
+}
+
+wk-option-swatches .wk-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: var(--input-border-radius);
+  background: var(--variant-input-background);
+  border: var(--variant-input-border); */
+  box-shadow: none;
+  background: var(--variant-input-selected-background);
+  border: 1px solid rgba(var(--text-color), 0.3);
+}
+
+wk-option-swatches .wk-radio {
+  appearance: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+wk-option-swatches .wk-selected .wk-label {
+  color: var(--variant-input-selected-color);
+}
+
+wk-option-swatches .wk-selected .wk-control {
+  box-shadow: var(--variant-input-selected-shadow);
+  background: var(--variant-input-selected-background);
+  border: var(--variant-input-selected-border);
+}
+
+wk-option-swatches .wk-has-color .wk-label,
+wk-option-swatches .wk-has-image .wk-label {
+  display: none;
+}
+
+wk-option-swatches .wk-has-image .wk-control {
+  background-size: contain;
+}
+
+wk-option-swatches .wk-soldout .wk-label {
+  color: rgba(var(--text-color), 0.5);
+}
+
+wk-option-swatches .wk-soldout .wk-control:before {
+  content: "";
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 0.5px),
+    rgba(var(--text-color), 0.3) calc(50% - 0.5px) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+wishlist-product-card .wk-quantity {
+  display: none;
+  width: 100%;
+  margin: 0 0 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font: inherit;
+}
+
+wishlist-product-card .wk-quantity input {
+  color: var(--text-color);
+  border: 1px solid #ccc;
+  width: 100%;
+  margin: 0;
+  padding: 3px 0;
+  color: #111;
+  outline: none;
+  text-indent: 8px;
+  font-size: calc(var(--wk-font-text-scale) * 100%);
+  font: inherit;
+}
+
+remove-button .wk-button {
+  --icon-size: 15px;
+  --icon-stroke-width: 0.5px;
+  --icon-stroke: black;
+  --icon-fill: transparent;
+
+  color: black;
+  background-color: transparent;
+  background: transparent;
+}
+
+remove-button .wk-floating .wk-button {
+  --icon-size: 15px;
+  --icon-stroke-width: 0.5px;
+  --icon-stroke: black;
+  --icon-fill: transparent;
+
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  min-height: 48px;
+  color: black;
+  box-shadow: none;
+}
+
+wishlist-product-card .wk-cta-button,
+wishlist-product-card .wk-cta-button:disabled {
+  appearance: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 0.5em;
+  border-radius: var(--button-border-radius);
+  min-height: var(--button-min-height);
+  color: var(--cta-button-color);
+  background: var(--cta-button-background);
+  border: var(--cta-button-border);
+  box-shadow: none;
+  font-size: calc(var(--wk-font-text-scale) * 100%);
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  opacity: 1;
+}
+
+wishlist-product-card .wk-cta-button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+wishlist-product-card .wk-cta-spinner {
+  display: none;
+}
+
+wishlist-product-card .wk-submitting .wk-cta-spinner {
+  display: block;
+}
+
+wishlist-product-card .wk-submitting .wk-cta-label {
+  display: none;
+}
+
+wishlist-share .wk-button,
+wishlist-add-to-cart .wk-button,
+wishlist-clear .wk-button {
+  --icon-size: 14px;
+  --icon-stroke: currentColor;
+  --icon-stroke-width: 1px;
+
+  color: currentColor;
+  background: none;
+  min-height: 30px;
+  padding: 0.25em 1em;
+}
+
+wishlist-clear .wk-button {
+  --icon-size: 9px;
+  --icon-stroke-width: 0.9px;
+}

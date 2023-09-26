@@ -1,0 +1,63 @@
+<style>
+  .wishlist-button {
+    --icon-size: 20px;
+    --icon-stroke: #000000;
+    --icon-stroke-width: 1px;
+  }
+
+  .wishlist-button .wk-button {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 5px 10px;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .wishlist-button .wk-icon svg {
+    display: block;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .wishlist-button .wk-icon svg path {
+    stroke: var(--icon-stroke);
+    fill: transparent;
+    stroke-width: var(--icon-stroke-width);
+    vector-effect: non-scaling-stroke;
+  }
+
+  .wishlist-button .wk-selected .wk-icon svg path {
+    fill: var(--icon-stroke);
+  }
+
+  .wishlist-button .wk-floating {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 2;
+  }
+
+  .wishlist-button .wk-floating .wk-text {
+    display: none;
+  }
+</style>
+
+<div class="wishlist-button">
+  <button
+    class="wk-button {% if floating %}wk-floating{% endif %}"
+    data-product-handle="{{ product_handle }}"
+    data-variant-id="{{ variant_id }}"
+  >
+    <span class="wk-icon">
+      <svg viewBox="0 0 64 64">
+        <path d="M32.012,59.616c-1.119-.521-2.365-1.141-3.707-1.859a79.264,79.264,0,0,1-11.694-7.614C6.316,42,.266,32.6.254,22.076,0.244,12.358,7.871,4.506,17.232,4.5a16.661,16.661,0,0,1,11.891,4.99l2.837,2.889,2.827-2.9a16.639,16.639,0,0,1,11.874-5.02h0c9.368-.01,17.008,7.815,17.021,17.539,0.015,10.533-6.022,19.96-16.312,28.128a79.314,79.314,0,0,1-11.661,7.63C34.369,58.472,33.127,59.094,32.012,59.616Z"><path>
+      </svg>
+    </span>
+    <span class="wk-text">Add to Wishlist</span>
+  </button>
+</div>

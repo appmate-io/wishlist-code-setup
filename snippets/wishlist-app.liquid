@@ -1,0 +1,74 @@
+<script type="module">
+  import { WishlistApp } from 'https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.25.18/wishlist-app.js';
+
+  const config = {
+    customerId: `{{ customer.id }}`,
+    customerEmail: `{{ customer.email }}`,
+    shopName: `{{ shop.name | replace: '&amp;', '&' }}`,
+    shopDomain: `{{ shop.domain }}`,
+    shopPermanentDomain: `{{ shop.permanent_domain }}`,
+    shopMoneyFormat: `{{ shop.money_format | replace: '$', '\$' }}`,
+    shopMoneyFormatWithCurrency: `{{ shop.money_with_currency_format | replace: '$', '\$' }}`,
+    shopCustomerAccountsEnabled: `{{ shop.customer_accounts_enabled }}`,
+    fileUrl: `{{ '' | file_url }}`,
+  };
+
+  const settings = {
+    general: {
+      appLoading: 'LAZY',
+      wishlistPath: '{{ pages.wishlist.url }}',
+      wishlistAccessMode: 'UNRESTRICTED', // REQUIRE_LOGIN_BEFORE_USE, REQUIRE_LOGIN_TO_VIEW_LIST
+      wishlistMode: 'PRODUCT', // VARIANT (mulit variant mode)
+    },
+    money: {
+      withCurrency: false,
+    },
+    integrations: {
+      wishlistAnalytics: { enabled: true },
+      klaviyo: { enabled: true },
+      metaPixel: { enabled: true },
+      googleAnalytics: { enabled: true },
+    },
+  };
+
+  const dependencies = [
+    `{{ 'wishlist-icons.js' | asset_url }}`,
+    `{{ 'wishlist-link.js' | asset_url }}`,
+    `{{ 'wishlist-button.js' | asset_url }}`,
+    `{{ 'wishlist-page.js' | asset_url }}`,
+    `{{ 'wishlist.css' | asset_url }}`,
+    'https://cdn.appmate.io/themecode/_templates/locale-en.json?v=15',
+  ];
+
+  const app = new WishlistApp({
+    config,
+    settings,
+    dependencies,
+  });
+
+  const initComponents = () => {
+    app.theme.watch(
+      {
+        selector: '.wishlist-link .wk-button',
+      },
+      (target) => {
+        app.theme.createHeadlessComponent('wishlist-link-headless', {
+          host: target,
+        });
+      }
+    );
+
+    app.theme.watch(
+      {
+        selector: '.wishlist-button .wk-button',
+      },
+      (target) => {
+        app.theme.createHeadlessComponent('wishlist-button-headless', {
+          host: target,
+        });
+      }
+    );
+  };
+
+  app.events.subscribe('wk:app:load-scripts:success', initComponents);
+</script>

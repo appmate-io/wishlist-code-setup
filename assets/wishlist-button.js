@@ -1,4 +1,4 @@
-import { WishlistElementHeadless } from "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.27.1/wishlist-element-headless.js";
+import { WishlistElementHeadless } from "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.28.0/wishlist-element-headless.js";
 
 class WishlistButtonHeadless extends WishlistElementHeadless {
   getStateConfig() {

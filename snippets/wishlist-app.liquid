@@ -1,5 +1,5 @@
 <script type="module">
-  import { WishlistApp } from 'https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.27.1/wishlist-app.js';
+  import { WishlistApp } from 'https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.28.0/wishlist-app.js';
 
   const config = {
     customerId: `{{ customer.id }}`,
@@ -37,7 +37,7 @@
     `{{ '/wishlist-button.js' | asset_url }}`,
     `{{ '/wishlist-page.js' | asset_url }}`,
     `{{ '/wishlist.css' | asset_url }}`,
-    'https://cdn.appmate.io/themecode/_templates/locale-en.json?v=15',
+    `{{ '/wishlist-locale-en.js' | asset_url }}`,
   ];
 
   const app = new WishlistApp({

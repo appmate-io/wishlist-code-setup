@@ -1,9 +1,9 @@
 import { html, repeat } from "https://cdn.jsdelivr.net/gh/lit/dist@2.7.4/all/lit-all.min.js";
-import { WishlistElement } from "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.28.0/wishlist-element.js";
-import { ProductFormController } from "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.28.0/controllers.js";
-import "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.28.0/components/button.js";
-import "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.28.0/components/option-select.js";
-import "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.28.0/components/option-swatches.js";
+import { WishlistElement } from "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.29.2/wishlist-element.js";
+import { ProductFormController } from "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.29.2/controllers.js";
+import "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.29.2/components/button.js";
+import "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.29.2/components/option-select.js";
+import "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.29.2/components/option-swatches.js";
 
 class WishlistPage extends WishlistElement {
   static get properties() {
@@ -209,7 +209,11 @@ class WishlistProductCard extends WishlistElement {
   getStateConfig() {
     return {
       loading: "lazy",
-      wishlistItem: true,
+      wishlistItem: {
+        metafields: [
+          // { namespace: "custom", key: "mykey" }
+        ]
+      },
     };
   }
 

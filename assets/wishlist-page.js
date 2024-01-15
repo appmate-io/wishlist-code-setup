@@ -210,7 +210,7 @@ class WishlistProductCard extends WishlistElement {
     return {
       loading: "lazy",
       wishlistItem: {
-        metafields: [
+        productMetafields: [
           // { namespace: "custom", key: "mykey" }
         ]
       },
